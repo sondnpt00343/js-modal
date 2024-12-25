@@ -1,42 +1,64 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
-let currentModal = null;
+function Modal() {
+    this.openModal = (content) => {
+        // Create modal elements
+        const backdrop = document.createElement("div");
+        backdrop.className = "modal-backdrop";
 
-$$("[data-modal]").forEach((btn) => {
-    btn.onclick = function () {
-        const modal = $(this.dataset.modal);
-        if (modal) {
-            modal.classList.add("show");
-            currentModal = modal;
-        } else {
-            console.error(`${this.dataset.modal} does not exist!`);
-        }
+        const container = document.createElement("div");
+        container.className = "modal-container";
+
+        const closeBtn = document.createElement("button");
+        closeBtn.className = "modal-close";
+        closeBtn.innerHTML = "&times;";
+
+        const modalContent = document.createElement("div");
+        modalContent.className = "modal-content";
+
+        // Append content and elements
+        modalContent.innerHTML = content;
+        container.append(closeBtn, modalContent);
+        backdrop.append(container);
+        document.body.append(backdrop);
+
+        setTimeout(() => {
+            backdrop.classList.add("show");
+        }, 0);
+
+        // Attach event listeners
+        closeBtn.onclick = () => this.closeModal(backdrop);
+        backdrop.onclick = (e) => {
+            if (e.target === backdrop) {
+                this.closeModal(backdrop);
+            }
+        };
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                this.closeModal(backdrop);
+            }
+        });
     };
-});
 
-$$(".modal-close").forEach((btn) => {
-    btn.onclick = function () {
-        const modal = this.closest(".modal-backdrop");
-        if (modal) {
-            modal.classList.remove("show");
-            currentModal = null;
-        }
+    this.closeModal = (modalElement) => {
+        modalElement.classList.remove("show");
+        modalElement.ontransitionend = () => {
+            modalElement.remove();
+        };
     };
-});
+}
 
-$$(".modal-backdrop").forEach((modal) => {
-    modal.onclick = function (e) {
-        if (e.target === this) {
-            this.classList.remove("show");
-            currentModal = null;
-        }
-    };
-});
+const modal = new Modal();
 
-document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && currentModal) {
-        currentModal.classList.remove("show");
-        currentModal = null;
-    }
-});
+$("#open-modal-1").onclick = () => {
+    modal.openModal("<h1>Hello F8 1</h1>");
+};
+
+$("#open-modal-2").onclick = () => {
+    modal.openModal("<h1>Hello F8 2</h1>");
+};
+
+$("#open-modal-3").onclick = () => {
+    modal.openModal("<h1>Hello F8 3</h1>");
+};
