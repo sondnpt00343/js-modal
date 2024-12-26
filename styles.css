@@ -22,15 +22,32 @@ button {
     cursor: pointer;
 }
 
-main {
-    margin: 20px;
-}
-
 .btn {
     border: 2px solid #ccc;
     border-radius: 8px;
     padding: 8px 20px;
     font-weight: 600;
+}
+
+header,
+article {
+    width: min(740px, 90%);
+    margin: 20px auto 0;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    padding: 20px 0;
+    background: #fff;
+}
+
+article p {
+    margin: 10px 0;
+}
+
+article img {
+    max-width: 100%;
 }
 
 .modal-backdrop {
@@ -84,4 +101,8 @@ main {
 .modal-content {
     max-height: 80vh;
     overflow-y: auto;
+}
+
+.no-scroll {
+    overflow: hidden;
 }
