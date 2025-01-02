@@ -75,7 +75,7 @@ article img {
 .modal-container {
     position: relative;
     width: min(600px, 90%);
-    padding: 28px;
+    padding: 20px 20px 0;
     border-radius: 10px;
     background: #fff;
     transform: scale(0);
@@ -101,6 +101,10 @@ article img {
 .modal-content {
     max-height: 80vh;
     overflow-y: auto;
+}
+
+.modal-footer {
+    padding: 20px 0;
 }
 
 .no-scroll {
