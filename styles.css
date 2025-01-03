@@ -56,7 +56,7 @@ article img {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.7);
     opacity: 0;
     visibility: hidden;
     transition: opacity, visibility;
@@ -76,7 +76,7 @@ article img {
     position: relative;
     width: min(600px, 90%);
     padding: 20px 20px 0;
-    border-radius: 10px;
+    border-radius: 6px;
     background: #fff;
     transform: scale(0);
     transition: transform 0.3s;
@@ -104,7 +104,28 @@ article img {
 }
 
 .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
     padding: 20px 0;
+}
+
+.modal-btn {
+    padding: 8px 20px;
+    color: #fff;
+    background: #34495e;
+}
+
+.modal-btn.primary {
+    background: #3498db;
+}
+
+.modal-btn.danger {
+    background: #e74c3c;
+}
+
+.modal-btn.pull-left {
+    margin-right: auto;
 }
 
 .no-scroll {
